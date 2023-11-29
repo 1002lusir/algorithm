@@ -32,4 +32,11 @@ public:
     void InvertedSort(std::vector<int32_t> &n_numbers) override;
 };
 
+class ShellSort : public Sort
+{
+public:
+    void PositiveSort(std::vector<int32_t> &n_numbers) override;
+    void InvertedSort(std::vector<int32_t> &n_numbers) override;
+};
+
 #endif // SORT_H

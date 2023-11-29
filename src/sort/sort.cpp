@@ -121,8 +121,58 @@ void InsertSort::InvertedSort(std::vector<int32_t> &n_numbers)
             }
             else
             {
-                n_numbers[j+1] = cur_number;
                 break;
+            }
+        }
+        n_numbers[j+1] = cur_number;
+    }
+}
+
+void ShellSort::PositiveSort(std::vector<int32_t> &n_numbers)
+{
+    for(int32_t gap = n_numbers.size()/2; gap > 0; gap/=2)
+    {
+        for(int32_t i = 0; i < gap; i++)
+        {
+            for(size_t j = i + gap; j < n_numbers.size(); j+=gap)
+            {
+                int32_t pro_index = j-gap;
+                int32_t cur_number = n_numbers[j];
+                if(cur_number < n_numbers[pro_index])
+                {
+                    while(pro_index >= 0 && cur_number < n_numbers[pro_index])
+                    {
+                        n_numbers[pro_index + gap] = n_numbers[pro_index];
+                        pro_index -= gap;
+                    }
+
+                    n_numbers[pro_index + gap] = cur_number;
+                }
+            }
+        }
+    }
+}
+
+void ShellSort::InvertedSort(std::vector<int32_t> &n_numbers)
+{
+    for(int32_t gap = n_numbers.size()/2; gap > 0; gap/=2)
+    {
+        for(int32_t i = 0; i < gap; i++)
+        {
+            for(size_t j = i + gap; j < n_numbers.size(); j+=gap)
+            {
+                int32_t pro_index = j-gap;
+                int32_t cur_number = n_numbers[j];
+                if(cur_number > n_numbers[pro_index])
+                {
+                    while(pro_index >= 0 && cur_number > n_numbers[pro_index])
+                    {
+                        n_numbers[pro_index + gap] = n_numbers[pro_index];
+                        pro_index -= gap;
+                    }
+
+                    n_numbers[pro_index + gap] = cur_number;
+                }
             }
         }
     }

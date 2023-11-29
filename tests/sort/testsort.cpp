@@ -59,4 +59,14 @@ void TestSort::testInsertSort()
     QCOMPARE(VerifyInrevSort(data), true);
 }
 
+void TestSort::testShellSort()
+{
+    ShellSort sort;
+    std::vector<int32_t> data = CreateTestData();
+    sort.PositiveSort(data);
+    QCOMPARE(VerifyPosSort(data), true);
+    sort.InvertedSort(data);
+    QCOMPARE(VerifyInrevSort(data), true);
+}
+
 QTEST_MAIN(TestSort)

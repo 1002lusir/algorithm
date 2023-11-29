@@ -25,6 +25,8 @@ private slots:
 
     void testInsertSort();
 
+    void testShellSort();
+
 };
 
 #endif // TESTSORT_H

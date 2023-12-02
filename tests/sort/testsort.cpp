@@ -1,12 +1,25 @@
 #include "testsort.h"
 
+#include <random>
 #include <qtestcase.h>
 
 #include "sort/sort.h"
 
 std::vector<int32_t> TestSort::CreateTestData()
 {
-    return std::vector<int32_t>{ 2,1,3,4,6,5,9,8,7,0 };
+    // 使用 C++11 中引入的 <random> 头文件来生成随机数
+    std::random_device rd;  // 用于获取随机数种子
+    std::mt19937 gen(rd()); // 使用 Mersenne Twister 引擎
+
+    std::vector<int32_t> randomVector;
+
+    // 生成长度为50的随机数组
+    for (int i = 0; i < 50; ++i) {
+        std::uniform_int_distribution<int32_t> dis(std::numeric_limits<int32_t>::min(),
+                                                   std::numeric_limits<int32_t>::max());
+        randomVector.push_back(dis(gen));
+    }
+    return randomVector;
 }
 
 bool TestSort::VerifyPosSort(std::vector<int32_t> n_numbers)
@@ -62,6 +75,37 @@ void TestSort::testInsertSort()
 void TestSort::testShellSort()
 {
     ShellSort sort;
+    std::vector<int32_t> data = CreateTestData();
+    sort.PositiveSort(data);
+    QCOMPARE(VerifyPosSort(data), true);
+    sort.InvertedSort(data);
+    QCOMPARE(VerifyInrevSort(data), true);
+}
+
+void TestSort::testMergeSort()
+{
+    MergeSort sort;
+    std::vector<int32_t> data = CreateTestData();
+    sort.PositiveSort(data);
+    QCOMPARE(VerifyPosSort(data), true);
+    sort.InvertedSort(data);
+    QCOMPARE(VerifyInrevSort(data), true);
+}
+
+void TestSort::testQuickSort()
+{
+
+    QuickSort sort;
+    std::vector<int32_t> data = CreateTestData();
+    sort.PositiveSort(data);
+    QCOMPARE(VerifyPosSort(data), true);
+    sort.InvertedSort(data);
+    QCOMPARE(VerifyInrevSort(data), true);
+}
+
+void TestSort::testHeapSort()
+{
+    HeapSort sort;
     std::vector<int32_t> data = CreateTestData();
     sort.PositiveSort(data);
     QCOMPARE(VerifyPosSort(data), true);

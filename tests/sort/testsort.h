@@ -27,6 +27,12 @@ private slots:
 
     void testShellSort();
 
+    void testMergeSort();
+
+    void testQuickSort();
+
+    void testHeapSort();
+
 };
 
 #endif // TESTSORT_H
